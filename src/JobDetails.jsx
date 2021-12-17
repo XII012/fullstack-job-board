@@ -4,15 +4,28 @@ import { Button,Card, Col, Row, Container, Alert } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 
 
 export default function JobDetails() {
     const jobId = useParams().jobId;
     const navigate = useNavigate();
     const username = useSelector(state=>state.username);
-    // let editDeleteButtons='';
     const [job, setJob] = useState(null);
     useEffect(findJobDetails, []);
+    const dispatch = useDispatch();
+
+    function updateJobDetail() {
+        console.log(job)
+        dispatch({
+            type:'UPDATE',
+            ...job
+        })
+    }
+    if (job) {
+        updateJobDetail();
+    }
 
     function findJobDetails() {
         axios.get('http://localhost:8000/api/job/findById/' + jobId)
@@ -161,9 +174,14 @@ export default function JobDetails() {
         </>) :
         (<Alert variant='danger'> No Job found </Alert>);
 
+
     return (
-        <div>
-            {jobComponent}
+        <div>{jobComponent}
+            {/* {(!needEdit) ? (jobComponent) : 
+            (
+            <JobForm jobTitle = {job.jobTitle} companyName = {job.companyName} location = {job.location}
+                description = {job.description} employerEmail = {job.employerEmail} companyWebsite = {job.companyWebsite}
+            ></JobForm>)} */}
         </div>
     )
 }

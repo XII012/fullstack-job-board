@@ -58,7 +58,7 @@ router.put('/update/:jobId', auth_middleware, function(request, response) {
   const job = request.body;
   const jobId = request.params.jobId;
 
-  // console.log(job);
+  console.log(job);
   // console.log(jobId);
 
   if(!job.jobTitle || !job.companyName || !job.location || !job.description || !job.employerEmail) {
