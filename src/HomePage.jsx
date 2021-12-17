@@ -1,4 +1,4 @@
-import { Form, FormControl, Button, Row, Col} from 'react-bootstrap';
+import { Form, FormControl, Button, Row, Col, Image} from 'react-bootstrap';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ export default function HomePage() {
         <>
         <Form>
             <Row className="justify-content-md-center">
-                <Col md="auto"><img src = "https://sheet2site.com/how-to-create-job-board/header.jpg" alt="JobBoard" /></Col>
+                <Col md="auto"><Image src = "https://sheet2site.com/how-to-create-job-board/header.jpg" alt="JobBoard" fluid/></Col>
             </Row>
             <Row className="justify-content-md-center">
                 <Col md="auto"><h1>Kaiwen's Job Board</h1></Col>

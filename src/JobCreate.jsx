@@ -1,12 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
+import ErrorMessage from './ErrorMessage';
 
 
 export default function JobCreate() {
     const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMsg, setErrorMessage] = useState('');
+    let errorComponent = <ErrorMessage errorMsg={errorMsg}></ErrorMessage>
     
     function createJob() {
 
@@ -113,7 +115,7 @@ export default function JobCreate() {
         <div>
             {jobComponent}
             <Button onClick={createJob}>Submit</Button>
-            <div>{errorMessage}</div>
+            {errorComponent}
         </div>
     )
 }

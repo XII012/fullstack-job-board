@@ -1,17 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button,Card, Col, Row, Container, Alert } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-
 
 
 export default function JobDetails() {
     const jobId = useParams().jobId;
     const navigate = useNavigate();
     const username = useSelector(state=>state.username);
-    let editDeleteButtons='';
+    // let editDeleteButtons='';
     const [job, setJob] = useState(null);
     useEffect(findJobDetails, []);
 
@@ -85,46 +84,82 @@ export default function JobDetails() {
 
     const jobComponent = job ? 
         (<>
-        <div>
-            Job Poster: {job.poster}
-        </div>
-        <div>
-            Job Title: {job.jobTitle}
-        </div>
-        <div>
-            Company Name: {job.companyName}
-        </div>
-        <div>
-            Job Location: {job.location}
-        </div>
-        <div>
-            Job Description: {job.description}
-        </div>
-        <div>
-            Job Employer Email: {job.employerEmail}
-        </div>
-        <div>
-            Company Website: {job.companyWebsite} 
-        </div>
-        <div>
-            Post Date: {job.postDate}
-        </div>
-        <div>
-            {favoriteButton}
-        </div>
-        <div>{
-        editDeleteButtons= (username === job.poster) ? (
-            <div>
-                <Link to={`/jobUpdate/${jobId}`}>
-                    <Button>Edit</Button>
-                </Link>
-                <Button onClick={deleteJob}>Delete</Button>
-            </div>
-        ):(<div></div>)
-        }</div>
+        <Container>
+            <Row sm={4}>
+                <Col>
+                    <Card>
+                        <Card.Header>Job Title</Card.Header>
+                        <Card.Body>
+                            <Card.Text>{job.jobTitle}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Card.Header>Company Name</Card.Header>
+                        <Card.Body>
+                            <Card.Text>{job.companyName}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Card.Header>Job Location</Card.Header>
+                        <Card.Body>
+                            <Card.Text>{job.location}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+            <Row sm={4}>
+                <Col>
+                    <Card>
+                        <Card.Header>Job Description</Card.Header>
+                        <Card.Body>
+                            <Card.Text>{job.description}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Card.Header>Job Employer Email</Card.Header>
+                        <Card.Body>
+                            <Card.Text>{job.employerEmail}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Card.Header>Company Website</Card.Header>
+                        <Card.Body>
+                            <Card.Text>{job.companyWebsite}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+            <Row xs="auto">
+                <Col>{favoriteButton}</Col>
+            </Row>
+            <p></p>
+            {(username === job.poster) ? (
+                <Row xs="auto">
+
+                    <Col>
+                        <Link to={`/jobUpdate/${jobId}`}>
+                            <Button>Edit</Button>
+                        </Link>
+                    </Col>
+                    <Col>
+                    <Button onClick={deleteJob}>Delete</Button>
+                    </Col>
+                </Row>   
+            ):(<div></div>)
+            }
+            
+        </Container>
 
         </>) :
-        (<div> No Job found </div>);
+        (<Alert variant='danger'> No Job found </Alert>);
 
     return (
         <div>

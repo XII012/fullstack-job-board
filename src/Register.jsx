@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+import ErrorMessage from './ErrorMessage';
 
 
 export default function Register() {
@@ -15,6 +16,7 @@ export default function Register() {
         username: '',
     })
     const [errorMsg, setError] = useState(null);
+    let errorComponent = <ErrorMessage errorMsg={errorMsg}></ErrorMessage>
 
   function onRegisterButtonClick() {
     
@@ -88,7 +90,7 @@ export default function Register() {
                 }
                 >Who is logged in?</button>
             {loggedInName && <div>{loggedInName}</div>}
-            <div>{errorMsg}</div>
+            <div>{errorComponent}</div>
         </div>
     );
 

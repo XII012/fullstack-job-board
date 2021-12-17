@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { Form, FormControl, Button, Row, Col} from 'react-bootstrap';
+import { Form, FormControl, Button, Row, Col, Container} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import JobSimple from './JobSimple';
 
@@ -25,40 +25,46 @@ export default function JobSearch() {
 
   const jobListComponent = allJob.map(job => {
     //   console.log(job._id)
-      return (<>
-      <p></p>
+      return (
+
       <JobSimple companyName = {job.companyName} jobId = {job._id}
                 jobTitle = {job.jobTitle} location = {job.location}/>
-      </>)
+      )
   })
   
     return (
-      <>
-      <Form>
-          <Row className="align-items-center">
-              <Col xs={5}></Col>
-              <Col xs="auto">
-                  <FormControl
-                  type="search"
-                  placeholder="Search jobs"
-                  className="me-2"
-                  aria-label="Search"
-                  onChange={(e) => {
-                      setFormInput(e.target.value);
-                  }}
-                  />
-              </Col>
-              <Col xs="auto">
-                    <Link to={`/jobSearch/${formInput}`}>
-                        <Button 
-                        variant="outline-success"
-                        >Search</Button>
-                    </Link>
+      <><Container fluid>
+        <Form>
+            <Row className="align-items-center">
+                <Col xs={2}>
+                    <FormControl
+                    type="search"
+                    placeholder="Search jobs"
+                    className="me-2"
+                    aria-label="Search"
+                    onChange={(e) => {
+                        setFormInput(e.target.value);
+                    }}
+                    />
+                </Col>
+                <Col xs="auto">
+                        <Link to={`/jobSearch/${formInput}`}>
+                            <Button 
+                            variant="outline-success"
+                            >Search</Button>
+                        </Link>
 
-              </Col>
-          </Row>
-      </Form>
-      <div>{jobListComponent}</div>
+                </Col>
+            </Row>
+        </Form>
+      </Container>
+      <Container fluid>
+        <Row className="align-items-center">
+            {/* <Col xs="auto">{jobListComponent}</Col> */}
+            {jobListComponent}
+        </Row>
+      </Container>
+      
       
       </>
    

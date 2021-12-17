@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+import ErrorMessage from './ErrorMessage';
 
 
 export default function Register() {
@@ -9,6 +10,7 @@ export default function Register() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [errorMsg, setError] = useState(null);
+    let errorComponent = <ErrorMessage errorMsg={errorMsg}></ErrorMessage>
 
     const [userData, setUserData] = useState({
         password: '',
@@ -49,7 +51,7 @@ export default function Register() {
                         .catch(error => setError(error.response.data));
                 }}
             >Log In</button>
-            <div>{errorMsg}</div>
+            <div>{errorComponent}</div>
         </div>
     );
 

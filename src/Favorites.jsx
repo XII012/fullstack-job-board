@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { Form, FormControl, Button, Row, Col} from 'react-bootstrap';
+import { Form, FormControl, Button, Row, Col, Container} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import JobSimple from './JobSimple';
 
@@ -40,15 +40,18 @@ export default function JobSearch() {
 
   const jobListComponent = allJob.map(job => {
     // console.log(job._id)
-    return (<>
-    <p></p>
+    return (
     <JobSimple companyName = {job.companyName} jobId = {job._id}
-              jobTitle = {job.jobTitle} location = {job.location}/>
-    </>)
+              jobTitle = {job.jobTitle} location = {job.location}/>)
 })
   
-    return (
-      <div>{jobListComponent}</div>
+    return (      
+    <Container fluid>
+      <Row className="align-items-center">
+          {/* <Col xs="auto">{jobListComponent}</Col> */}
+          {jobListComponent}
+      </Row>
+    </Container>
       
     );
 }
