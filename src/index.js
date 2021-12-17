@@ -6,7 +6,6 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from './reducers/reducers';
 import PokemonDetails from './PokemonDetails';
-import PokemonList from './PokemonList';
 import PokemonSearch from './PokemonSearch';
 import reportWebVitals from './reportWebVitals';
 import Register from './Register';
