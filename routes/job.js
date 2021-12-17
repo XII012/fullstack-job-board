@@ -16,6 +16,14 @@ router.get('/findById/:jobId', function(request, response) {
     .catch(error => response.status(400).send(error))
 })
 
+router.get('/findByIds', function(request, response) {
+  const jobIds = request.query.jobIds;
+  console.log("qqq")
+  return JobAccessor.findJobByIds(jobIds)
+    .then(jobResponse => response.status(200).send(jobResponse))
+    .catch(error => response.status(400).send(error))
+})
+
 router.get('/findByTitle/:jobTitle', function(request, response) {
   const jobTitle = request.params.jobTitle;
               

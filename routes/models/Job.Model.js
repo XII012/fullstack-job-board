@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const JobSchema = require('../schema/Job.Schema').JobSchema
 
+
 const JobModel = mongoose.model("Job", JobSchema);
 
 function insertJob(job) {
@@ -29,6 +30,16 @@ function findJobById(id) {
     return JobModel.findById(id).exec();
 }
 
+function findJobByIds(ids) {
+    // console.log(ids)
+    let mongoIds = []
+    for (let id of ids) {
+        console.log(id)
+        mongoIds.push(mongoose.Types.ObjectId(id))
+    }
+    return JobModel.find({ _id : { $in : mongoIds } }).exec();
+}
+
 function updateJobById(id, job) {
     return JobModel.updateOne({
         _id: id
@@ -47,6 +58,7 @@ module.exports = {
     findJobByTitle,
     getAllJob,
     findJobById,
+    findJobByIds,
     updateJobById,
     deleteById,
 };

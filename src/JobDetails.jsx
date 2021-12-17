@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 
+
 export default function JobDetails() {
     const jobId = useParams().jobId;
     const navigate = useNavigate();
@@ -30,32 +31,55 @@ export default function JobDetails() {
     }
 
 
-
     const [favorite, setFavorite] = useState(false);
 
-    let favoriteButton = (username) ? (<Button onClick={favoriteJob}>{(!favorite)?("Favorite"):("Unfavorite")}</Button>) : (<div></div>);
+    let favoriteButton = (username) ?
+    (
+        (!favorite) ?
+            (<Button onClick={favoriteJob}>Favorite</Button>) :
+            (<Button onClick={unfavoriteJob}>Unfavorite</Button>)
+            )
+     : (<div></div>);
 
     function checkFavorite() {
         axios.get('http://localhost:8000/api/users/favorites', {withCredentials:true})
             .then((response) =>{
                 // console.log(response)
                 if (response.data.includes(jobId)) {
-                    // console.log("true")
+                    console.log("true")
                     setFavorite(true);
                 }
             })
             .catch(error=>console.log(error))
     }
     
-    useEffect(checkFavorite, []);
+    useEffect(checkFavorite, [favorite]);
 
+    axios.defaults.withCredentials = true;
+    
     function favoriteJob() {
-        axios.put('http://localhost:8000/api/users/favorite/' + jobId, {withCredentials:true})
+        axios.put('http://localhost:8000/api/users/favorite/' + jobId)
             .then(response => {
-
-                console.log(response.data)
+                setFavorite(true)
+                console.log(favorite)
             })
-            .catch(error => console.log("Could not find Job"));
+            .catch(error => {
+                setFavorite(true)
+                console.log(error.response)
+            });
+    }
+
+
+    function unfavoriteJob() {
+        axios.put('http://localhost:8000/api/users/unfavorite/' + jobId)
+            .then(response => {
+                setFavorite(false)
+                console.log(favorite)
+            })
+            .catch(error => {
+                setFavorite(false)
+                console.log(error.response)
+            });
     }
 
 

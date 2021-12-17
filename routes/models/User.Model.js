@@ -15,10 +15,17 @@ function findUserByUsername(username) {
     return UserModel.findOne({username: username}).exec();
 }
 
-function updateByUsername(username, jobId) {
+function pushFavoriteByUsernameJobId(username, jobId) {
     return UserModel.updateOne(
         {username: username},
         {$push:{favorites: jobId}}
+    ).exec();
+}
+
+function pullFavoriteByUsernameJobId(username, jobId) {
+    return UserModel.updateOne(
+        {username: username},
+        {$pull:{favorites: jobId}}
     ).exec();
 }
 
@@ -27,5 +34,6 @@ module.exports = {
     insertUser,
     getAllUsers,
     findUserByUsername,
-    updateByUsername,
+    pushFavoriteByUsernameJobId,
+    pullFavoriteByUsernameJobId,
 };
