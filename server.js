@@ -1,5 +1,4 @@
 const express = require('express');
-const pokemon = require('./routes/pokemon.js');
 const users = require('./routes/user.js');
 const job = require('./routes/job.js');
 const cors = require('cors')
@@ -36,7 +35,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/pokemon', pokemon);
 app.use('/api/job', job); 
 app.use('/api/users', users);
 // Note that it is common practice got backend APIs in Node to start with the api prefix

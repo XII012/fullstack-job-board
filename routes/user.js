@@ -5,7 +5,7 @@ const UserModel = require('./models/User.Model');
 const jwt = require('jsonwebtoken');
 const auth_middleware = require('./auth_middleware.js')
 
-// Returns all known pokemon
+// Returns all known users
 router.get('/findAll', function(request, response) {
     UserModel.getAllUsers()
         .then((userResponse) => {

@@ -5,8 +5,6 @@ import './index.css';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from './reducers/reducers';
-import PokemonDetails from './PokemonDetails';
-import PokemonSearch from './PokemonSearch';
 import reportWebVitals from './reportWebVitals';
 import Register from './Register';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,7 +13,6 @@ import TopNavbar from './TopNavbar';
 import HomePage from './HomePage';
 import JobSearch from './JobSearch';
 import JobDetails from './JobDetails';
-import PokemonTracker from './PokemonTracker';
 import LogIn from './LogIn';
 import JobCreate from './JobCreate';
 import JobUpdate from './JobUpdate';
@@ -40,9 +37,6 @@ ReactDOM.render(
         <Route path="/jobCreate" element={<JobCreate />} />
         <Route path="/jobUpdate/:jobId" element={<JobUpdate />} />
         <Route path="/jobDetails/:jobId" element={<JobDetails />} />
-        <Route path="/myPokemon" element={<PokemonTracker />} />
-        <Route path="/pokemonSearch/:searchQuery" element={<PokemonSearch />} />
-        <Route path="/pokemon/:pokemonName" element={<PokemonDetails />} />
       </Routes>
     </Router>
   </Provider>,
