@@ -80,7 +80,7 @@ export default function Register() {
                         .catch(error => console.log(error));
                 }}
             >Log Out</button> */}
-            <button
+            {/* <button
                 onClick={
                     () => {
                         axios.get('/api/users/whoIsLoggedIn')
@@ -88,7 +88,7 @@ export default function Register() {
                             .catch(error => console.log(error));
                     }
                 }
-                >Who is logged in?</button>
+                >Who is logged in?</button> */}
             {loggedInName && <div>{loggedInName}</div>}
             <div>{errorComponent}</div>
         </div>

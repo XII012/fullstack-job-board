@@ -5,6 +5,8 @@ const defaultJob = {
     description:'',
     employerEmail:'',
     companyWebsite:'',
+    postDate:null,
+    poster:'',
 }
 
 export default function jobReducer(
@@ -20,6 +22,7 @@ export default function jobReducer(
         state.description = action.description;
         state.employerEmail = action.employerEmail;
         state.companyWebsite = action.companyWebsite;
+        state.postDate = action.postDate;
         return {...state};
     }
     if (action.type === 'RESET') {

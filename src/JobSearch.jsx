@@ -36,7 +36,7 @@ export default function JobSearch() {
       <><Container fluid>
         <Form>
             <Row className="align-items-center">
-                <Col xs={2}>
+                <Col >
                     <FormControl
                     type="search"
                     placeholder="Search jobs"

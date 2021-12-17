@@ -1,10 +1,11 @@
 
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { Form, FormControl, Button, Row, Col, Container} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import JobSimple from './JobSimple';
+import { useSelector } from 'react-redux';
 
 
 export default function JobSearch() {

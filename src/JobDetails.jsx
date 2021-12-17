@@ -51,7 +51,8 @@ export default function JobDetails() {
             (<Button onClick={favoriteJob}>Favorite</Button>) :
             (<Button onClick={unfavoriteJob}>Unfavorite</Button>)
             )
-     : (<div></div>);
+     : (<Link to="/login"><Button>Favorite</Button></Link>
+     );
 
     function checkFavorite() {
         axios.get('http://localhost:8000/api/users/favorites', {withCredentials:true})
@@ -137,7 +138,7 @@ export default function JobDetails() {
                     <Card>
                         <Card.Header>Job Employer Email</Card.Header>
                         <Card.Body>
-                            <Card.Text>{job.employerEmail}</Card.Text>
+                            <Card.Text><a href={`mailto:${job.employerEmail}`}>{job.employerEmail}</a></Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -146,6 +147,14 @@ export default function JobDetails() {
                         <Card.Header>Company Website</Card.Header>
                         <Card.Body>
                             <Card.Text>{job.companyWebsite}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Card.Header>Post Date</Card.Header>
+                        <Card.Body>
+                            <Card.Text>{job.postDate}</Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
