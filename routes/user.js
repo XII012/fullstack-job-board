@@ -26,7 +26,6 @@ router.get('/favorites', auth_middleware, function(request, response) {
             if(!userResponse) {
                 response.status(404).send("User not found");
             }
-    
             response.send(userResponse.favorites)
         })
         .catch((error) => response.status(400).send(error));

@@ -10,6 +10,7 @@ export default function JobCreate() {
     const [errorMsg, setErrorMessage] = useState('');
     let errorComponent = <ErrorMessage errorMsg={errorMsg}></ErrorMessage>
     
+    axios.defaults.withCredentials = true;
     function createJob() {
 
         axios.post('http://localhost:8000/api/job/create', jobForm, {withCredentials: true})

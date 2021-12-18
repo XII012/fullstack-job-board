@@ -18,28 +18,29 @@ export default function Register() {
     const [errorMsg, setError] = useState(null);
     let errorComponent = <ErrorMessage errorMsg={errorMsg}></ErrorMessage>
 
-  function onRegisterButtonClick() {
-    
-    if (userData.password !== userData.passwordVerification) {
-      setError("Your password and password verification don't match.");
-      return;
-    }
+    axios.defaults.withCredentials = true;
+    function onRegisterButtonClick() {
+        
+        if (userData.password !== userData.passwordVerification) {
+        setError("Your password and password verification don't match.");
+        return;
+        }
 
-    axios.post('/api/users', userData)
-    .then(response => {
-        dispatch({
-            type:'LOGIN',
-            username: response.data.username,
+        axios.post('/api/users', userData)
+        .then(response => {
+            dispatch({
+                type:'LOGIN',
+                username: response.data.username,
+            })
+            navigate('/')
+            // console.log(response)
+            // console.log(response.data.username)
         })
-        navigate('/')
-        // console.log(response)
-        // console.log(response.data.username)
-    })
-    .catch(error => {
-        console.log(error)
-        setError("Username already exists.")
-    });
-  }
+        .catch(error => {
+            console.log(error)
+            setError("Username already exists.")
+        });
+    }
 
     const [loggedInName, setLoggedInName] = useState('');
 

@@ -12,6 +12,7 @@ export default function JobUpdate() {
     const job = useSelector(state=>state.job);
     const dispatch = useDispatch();
 
+    axios.defaults.withCredentials = true;
     function updateJob() {
 
         axios.put(`http://localhost:8000/api/job/update/${jobId}`, job, {withCredentials: true})

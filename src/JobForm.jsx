@@ -16,6 +16,7 @@ export default function JobUpdate(props) {
         companyWebsite: props.companyWebsite,
     })
 
+    axios.defaults.withCredentials = true;
     function checkLogin() {
         axios.get('/api/users/whoIsLoggedIn')
             .then((response) => console.log(response.data))

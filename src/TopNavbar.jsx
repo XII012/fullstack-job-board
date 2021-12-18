@@ -10,6 +10,8 @@ export default function TopNavbar() {
     let username = useSelector((state) => state.username);
     const dispatch = useDispatch();
 
+    axios.defaults.withCredentials = true;
+    
     function checkLogin() {
         axios.get('/api/users/whoIsLoggedIn')
             .then((response) => dispatch({

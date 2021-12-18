@@ -5,9 +5,9 @@ module.exports = function(req, res, next) {
     const username = req.session.username;
     console.log(req.session)
     console.log(req.session.username)
-    for (let ele of req.session) {
-        console.log(ele)
-    }
+    // for (let ele of req.session) {
+    //     console.log(ele)
+    // }
     // console.log(req)
     if (!username) {
         res.status(401).send('Unauthorized: No session available');
