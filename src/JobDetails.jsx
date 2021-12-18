@@ -29,7 +29,10 @@ export default function JobDetails() {
 
     function findJobDetails() {
         axios.get('http://localhost:8000/api/job/findById/' + jobId)
-            .then(response => setJob(response.data))
+            .then(response => {
+                console.log(response.data)
+                setJob(response.data)
+            })
             .catch(error => console.log("Could not find Job"));
     }
 
@@ -59,7 +62,6 @@ export default function JobDetails() {
             .then((response) =>{
                 // console.log(response)
                 if (response.data.includes(jobId)) {
-                    console.log("true")
                     setFavorite(true);
                 }
             })

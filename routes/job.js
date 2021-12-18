@@ -55,10 +55,12 @@ router.post('/create', auth_middleware, (request, response) => {
 })
 
 router.put('/update/:jobId', auth_middleware, function(request, response) {
+  const username = request.session.username;
   const job = request.body;
   const jobId = request.params.jobId;
 
-  console.log(job);
+  job.poster = username;
+  // console.log(job);
   // console.log(jobId);
 
   if(!job.jobTitle || !job.companyName || !job.location || !job.description || !job.employerEmail) {
