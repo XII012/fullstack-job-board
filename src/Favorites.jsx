@@ -1,11 +1,8 @@
 
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
-import { Form, FormControl, Button, Row, Col, Container} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Row, Container} from 'react-bootstrap';
 import JobSimple from './JobSimple';
-import { useSelector } from 'react-redux';
 
 
 export default function JobSearch() {
@@ -19,9 +16,9 @@ export default function JobSearch() {
       axios.get('http://localhost:8000/api/users/favorites')
           .then(response => {
             setAllJobId(response.data)
-            // console.log(allJobId)
+            console.log(allJobId)
           })
-          .catch(error => console.error(error));
+          .catch(error => console.error(error.response));
   }
 
   function findAllJob() {
