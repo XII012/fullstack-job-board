@@ -15,7 +15,7 @@ export default function JobUpdate() {
     axios.defaults.withCredentials = true;
     function updateJob() {
 
-        axios.put(`http://localhost:8000/api/job/update/${jobId}`, job, {withCredentials: true})
+        axios.put(`/api/job/update/${jobId}`, job, {withCredentials: true})
             .then(response => {
                 console.log(response.data)
                 navigate(`/jobDetails/${jobId}`)

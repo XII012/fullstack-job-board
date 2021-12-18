@@ -13,7 +13,7 @@ export default function JobCreate() {
     axios.defaults.withCredentials = true;
     function createJob() {
 
-        axios.post('http://localhost:8000/api/job/create', jobForm, {withCredentials: true})
+        axios.post('/api/job/create', jobForm, {withCredentials: true})
             .then(response => {
                 console.log(response.data)
                 navigate(`/jobDetails/${response.data._id}`)

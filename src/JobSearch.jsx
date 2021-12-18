@@ -14,7 +14,7 @@ export default function JobSearch() {
 
 
   function findAllJob() {
-      axios.get('http://localhost:8000/api/job/findByTitle/' + jobTitle)
+      axios.get('/api/job/findByTitle/' + jobTitle)
           .then(response => {
               setAllJob(response.data)
           })

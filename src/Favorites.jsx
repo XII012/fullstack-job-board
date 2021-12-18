@@ -13,7 +13,7 @@ export default function JobSearch() {
   axios.defaults.withCredentials = true;
 
   function findAllJobId() {
-      axios.get('http://localhost:8000/api/users/favorites')
+      axios.get('/api/users/favorites')
           .then(response => {
             setAllJobId(response.data)
             console.log(allJobId)
@@ -22,7 +22,7 @@ export default function JobSearch() {
   }
 
   function findAllJob() {
-    axios.get('http://localhost:8000/api/job/findByIds',{
+    axios.get('/api/job/findByIds',{
             params: {
             jobIds: allJobId
             }

@@ -28,7 +28,7 @@ export default function JobDetails() {
     }
 
     function findJobDetails() {
-        axios.get('http://localhost:8000/api/job/findById/' + jobId)
+        axios.get('/api/job/findById/' + jobId)
             .then(response => {
                 console.log(response.data)
                 setJob(response.data)
@@ -37,7 +37,7 @@ export default function JobDetails() {
     }
 
     function deleteJob() {
-        axios.delete('http://localhost:8000/api/job/delete/' + jobId, {withCredentials:true})
+        axios.delete('/api/job/delete/' + jobId, {withCredentials:true})
             .then(response => {
                 console.log(response)
                 navigate('/')
@@ -58,7 +58,7 @@ export default function JobDetails() {
      );
 
     function checkFavorite() {
-        axios.get('http://localhost:8000/api/users/favorites', {withCredentials:true})
+        axios.get('/api/users/favorites', {withCredentials:true})
             .then((response) =>{
                 // console.log(response)
                 if (response.data.includes(jobId)) {
@@ -73,7 +73,7 @@ export default function JobDetails() {
     axios.defaults.withCredentials = true;
     
     function favoriteJob() {
-        axios.put('http://localhost:8000/api/users/favorite/' + jobId)
+        axios.put('/api/users/favorite/' + jobId)
             .then(response => {
                 setFavorite(true)
                 console.log(favorite)
@@ -86,7 +86,7 @@ export default function JobDetails() {
 
 
     function unfavoriteJob() {
-        axios.put('http://localhost:8000/api/users/unfavorite/' + jobId)
+        axios.put('/api/users/unfavorite/' + jobId)
             .then(response => {
                 setFavorite(false)
                 console.log(favorite)
