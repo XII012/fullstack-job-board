@@ -4,7 +4,7 @@ const UserSchema = require('../schema/User.Schema').UserSchema
 const UserModel = mongoose.model("User", UserSchema);
 
 function insertUser(user) {
-    return UserModel.create(user).exec();
+    return UserModel.create(user);
 }
 
 function getAllUsers() {
